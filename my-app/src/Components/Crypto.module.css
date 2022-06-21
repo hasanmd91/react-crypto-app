@@ -1,0 +1,14 @@
+.app {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  background-color: #bbd2c5; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #536976, #bbd2c5);
+  background: linear-gradient(to right, #536976, #bbd2c5);
+}
+h1 {
+  color: black;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}

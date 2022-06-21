@@ -1,6 +1,8 @@
 import React from "react";
+import style from "./Crypto.module.css";
 import { useState, useEffect } from "react";
 import { Coins } from "./Coins";
+import Search from "./Search";
 
 const Crypto = () => {
   const [coinData, setCoinData] = useState([]);
@@ -13,25 +15,25 @@ const Crypto = () => {
     const result = await response.json();
     setCoinData(result);
   };
+  const handelSearch = (searchvalue) => {
+    let value = searchvalue.toLowerCase();
+    const newCoin = coinData.filter((fillcrypto) => {
+      const newCrypto = fillcrypto.name.toLowerCase();
+      return newCrypto.startsWith(value);
+    });
+    if (searchvalue != null) {
+      setCoinData(newCoin);
+    } else return coinData;
+  };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      fetchdata();
-    }, 1000);
-    return () => clearInterval(interval);
+    fetchdata();
   }, []);
 
-  // const handelsearch = (searchvalue) => {
-  //   let value = searchvalue.toLowerCase();
-  //   const newCoin = coinData.filter((fillcrypto) => {
-  //     const newCrypto = fillcrypto.name.toLowerCase();
-  //     return newCrypto.startsWith(value);
-  //   });
-  //   setCoinData(newCoin);
-  //
-
   return (
-    <>
+    <div className={style.app}>
+      <h1> Crypto currency price tracking app</h1>
+      <Search onSearch={handelSearch} />
       {coinData.map((coin) => {
         return (
           <Coins
@@ -46,7 +48,7 @@ const Crypto = () => {
           />
         );
       })}
-    </>
+    </div>
   );
 };
 

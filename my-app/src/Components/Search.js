@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import style from "./Search.module.css";
 
 const Search = (props) => {
   const [searchTxt, setSearchtxt] = useState("");
@@ -12,7 +13,7 @@ const Search = (props) => {
   }, [searchTxt]);
 
   return (
-    <div className="searcbox">
+    <div className={style.searchbox}>
       <form>
         <input
           type="text"
